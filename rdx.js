@@ -126,7 +126,7 @@ function loadConfig() {
     config = {
       BOTNAME: 'SARDAR RDX',
       PREFIX: '.',
-      ADMINBOT: ['100009012838085'],
+      ADMINBOT: ['61573960335650'],
       TIMEZONE: 'Asia/Karachi',
       PREFIX_ENABLED: true,
       REACT_DELETE_EMOJI: '😡',
