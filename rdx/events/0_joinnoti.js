@@ -2,7 +2,7 @@ module.exports.config = {
     name: "joinNoti",
     eventType: ["log:subscribe"],
     version: "1.0.0",
-    credits: "SARDAR RDX",
+    credits: "LGND ALIYA",
     description: "Send message when bot joins group"
 };
 
@@ -18,6 +18,6 @@ module.exports.run = async function({ api, event }) {
             console.log("Nickname error:", e.message);
         }
         
-        return api.sendMessage("Hello Everyone🙋‍♂️ 𝐁𝐨𝐭 𝐢𝐬 𝐍𝐨𝐰 𝐂𝐨𝐧𝐧𝐞𝐜𝐭𝐞𝐝⛓️", threadID);
+        return api.sendMessage("Hello Everyone🙋‍♂️ LGND ALIYA INSIDE 𝐢𝐬 𝐍𝐨𝐰 𝐂𝐨𝐧𝐧𝐞𝐜𝐭𝐞𝐝⛓️", threadID);
     }
 }
