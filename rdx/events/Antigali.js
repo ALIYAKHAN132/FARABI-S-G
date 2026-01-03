@@ -1,38 +1,41 @@
 module.exports.config = {
   name: "antigali",
   version: "1.0.0",
-  credits: "FIXED",
-  description: "Auto Anti Gali System"
+  hasPermssion: 0,
+  credits: "CHATGPT",
+  description: "Auto reply on bad words",
+  commandCategory: "system",
+  usages: "",
+  cooldowns: 0
 };
 
-const badWords = [
-  "madarchod",
-  "bhosdike",
-  "chutiya",
-  "gandu",
-  "randi",
-  "mc",
-  "bc",
-  "lode",
-  "lund"
+const GALI = [
+  "mc", "bc", "bkl", "madarchod", "behenchod",
+  "chutiya", "randi", "harami", "kutte", "bsdk"
 ];
 
+const REPLY = [
+  "Zubaan sambhal ke 😒",
+  "Aise baat mat karo 🙄",
+  "Respect rakho yaar 🙂",
+  "Gali dene se cool nahi bante 😌",
+  "Shaant ho jao 😏"
+];
+
+// ✅ AUTO LISTENER
 module.exports.handleEvent = async function ({ api, event }) {
-  try {
-    if (!event.body) return;
+  if (!event.body) return;
 
-    const msg = event.body.toLowerCase();
+  const text = event.body.toLowerCase();
 
-    if (badWords.some(word => msg.includes(word))) {
-      return api.sendMessage(
-        "⚠️ Gali mat do. Respect rakho 🙂",
-        event.threadID,
-        event.messageID
-      );
-    }
-  } catch (e) {
-    console.log("ANTI-GALI ERROR:", e);
+  if (GALI.some(word => text.includes(word))) {
+    return api.sendMessage(
+      REPLY[Math.floor(Math.random() * REPLY.length)],
+      event.threadID,
+      event.messageID
+    );
   }
 };
 
-module.exports.run = async () => {};
+// ❌ run empty rakho (command ki zarurat nahi)
+module.exports.run = async function () {};
