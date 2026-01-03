@@ -1,29 +1,45 @@
-const badWords = [
-  "gandu", "bc", "mc", "bhosdi", "lund", "chutiya", "madarchod", "randi"
-];
+module.exports.config = {
+  name: "antigali",
+  version: "1.0.0",
+  hasPermssion: 0,
+  credits: "ChatGPT",
+  description: "Auto Anti Gali Reply",
+  commandCategory: "system",
+  usages: "",
+  cooldowns: 0
+};
 
-const savageReplies = [
-  "Aree yaar, thoda tameez rakho 😏",
-  "Hahaha cute gaali hai, par main bhi reply kar sakti hoon 💁‍♀️",
-  "Oi 😏, aise baat mat karo, warna main bhi nikal dungi 🔥",
-  "Bas bas, thoda pyar se bolo na 💕",
-  "Wow 😏, creative ho tum, reply bhi milega!"
-];
+// ❌ command band
+module.exports.run = async () => {};
 
-// handler-event style
-module.exports = async function ({ api, event }) {
-  const { body, threadID, senderID } = event;
-  if (!body) return;
+// ✅ bina prefix auto kaam
+module.exports.handleEvent = async function ({ api, event }) {
+  if (!event.body) return;
 
-  const msg = body.toLowerCase();
+  const msg = event.body.toLowerCase();
 
-  // Check for any bad word
-  const found = badWords.some(word => msg.includes(word));
-  if (!found) return; // agar gaali nahi mili to ignore
+  // ❗ gaali list (apni marzi se add/remove kar sakta hai)
+  const BAD_WORDS = [
+    "mc", "bc", "madarchod", "behenchod", "chutiya",
+    "randi", "bhosdike", "lund", "gandu", "harami",
+    "fuck", "shit", "asshole"
+  ];
 
-  // Random savage reply
-  const reply = savageReplies[Math.floor(Math.random() * savageReplies.length)];
+  // check
+  const found = BAD_WORDS.some(word => msg.includes(word));
+  if (!found) return;
 
-  // Send message
-  api.sendMessage(reply, threadID);
+  const replies = [
+    "Gaali mat do 😑 thoda tameez rakho",
+    "Respect se baat karo 😌",
+    "Ye group hai, gali allowed nahi 🚫",
+    "Shanti rakho warna bot bhi gussa ho jayega 🤖😤",
+    "Language sudharo dost 🙂"
+  ];
+
+  return api.sendMessage(
+    replies[Math.floor(Math.random() * replies.length)],
+    event.threadID,
+    event.messageID
+  );
 };
